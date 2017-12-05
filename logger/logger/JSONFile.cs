@@ -9,7 +9,6 @@ namespace logger
     {
         private bool _disposed ;
 
-        private StreamWriter _sw;
 
         public JSONFile(string nameFile) : base(nameFile)
         {}
@@ -25,41 +24,20 @@ namespace logger
             {
                _sw = File.AppendText(NameFile);
             }
-            File.AppendAllText(NameFile,new JObject
+            lock (lockObj)
             {
-                {"LogString", logString},
-                {"LogLevel", logLevel},
-                {"Module", module},
-                {"Date", date}
-            }.ToString());
-
+                File.AppendAllText(NameFile, new JObject
+                {
+                    {"LogString", logString},
+                    {"LogLevel", logLevel},
+                    {"Module", module},
+                    {"Date", date}
+                }.ToString());
+            }
             return true;
         }
 
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!_disposed)
-            {
-                if (disposing)
-                {
-                    _sw.Dispose();
-                }
-                _disposed = true;
-                NameFile = null;
-            }
-        }
-
-        ~JSONFile()
-        {
-            Dispose(false);
-        }
-
+      
 
     }
 }

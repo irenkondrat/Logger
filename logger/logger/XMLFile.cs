@@ -45,13 +45,13 @@ namespace logger
             return true;
         }
 
-        public void Dispose()
+        public new void Dispose()
         {
             Dispose(true);
             GC.SuppressFinalize(this);
         }
 
-        protected virtual void Dispose(bool disposing)
+        protected new void Dispose(bool disposing)
         {
             if (!_disposed)
             {

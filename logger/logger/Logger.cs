@@ -8,7 +8,7 @@ namespace logger
 
     public class Logger : ILogger
     {
-        protected FileBase file ;
+        protected FileBase File ;
 
         public Logger()
         {
@@ -17,16 +17,16 @@ namespace logger
             switch (GetSetting("Type"))
             {
                 case "xml":
-                    file = new XMLFile($"{nameFile}.xml");
+                    File = new XMLFile($"{nameFile}.xml");
                     break;
                 case "plain":
-                    file = new PlainText($"{nameFile}.txt");
+                    File = new PlainText($"{nameFile}.txt");
                     break;
                 case "json":
-                    file = new JSONFile($"{nameFile}.json");
+                    File = new JSONFile($"{nameFile}.json");
                     break;
                 default:
-                    file = new XMLFile($"{nameFile}.xml");
+                    File = new PlainText($"{nameFile}.txt");
                     return;
             }
         }
@@ -35,21 +35,23 @@ namespace logger
         {
             var logLevel = "Info";
 
-            string minlevel = GetSetting("Minlevel");
+        /*    string minlevel = GetSetting("Minlevel");
             if (Enum.IsDefined(typeof(LoggerLevel), minlevel))
-                logLevel = minlevel;
+                logLevel = minlevel;*/
 
-            file.WrtFile(logString, logLevel, "", DateTime.Now);
+            File.WrtFile(logString, logLevel, "", DateTime.Now);
         }
 
         public void Log(string logString, LoggerLevel logLevel)
         {
-            file.WrtFile(logString, logLevel.ToString(), "", DateTime.Now);
+            Log(logString, logLevel, "");
+            
         }
 
         public void Log(string logString, LoggerLevel logLevel, string module)
         {
-            file.WrtFile(logString, logLevel.ToString(), module, DateTime.Now);
+            File.WrtFile(logString, logLevel.ToString(), module, DateTime.Now);
+            File.Dispose();
         }
 
         protected string GetSetting(string key)
@@ -57,7 +59,7 @@ namespace logger
             try
             {
                 var appSettings = ConfigurationManager.AppSettings;
-                string result = appSettings[key] ?? "Not Found";
+                string result = appSettings[key] ?? null;
                 return result;
             }
             catch (ConfigurationErrorsException)
