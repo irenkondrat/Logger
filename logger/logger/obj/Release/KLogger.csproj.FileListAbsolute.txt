@@ -1,0 +1,8 @@
+D:\Epam Labs\Logger\logger\logger\bin\Release\logger.dll
+D:\Epam Labs\Logger\logger\logger\bin\Release\logger.pdb
+D:\Epam Labs\Logger\logger\logger\bin\Release\Json.dll
+D:\Epam Labs\Logger\logger\logger\bin\Release\Newtonsoft.Json.dll
+D:\Epam Labs\Logger\logger\logger\bin\Release\Json.pdb
+D:\Epam Labs\Logger\logger\logger\bin\Release\Newtonsoft.Json.xml
+D:\Epam Labs\Logger\logger\logger\obj\Release\logger.dll
+D:\Epam Labs\Logger\logger\logger\obj\Release\logger.pdb

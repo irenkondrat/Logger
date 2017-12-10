@@ -7,3 +7,12 @@ D:\logger\logger\bin\Debug\Newtonsoft.Json.xml
 D:\logger\logger\obj\Debug\logger.csprojResolveAssemblyReference.cache
 D:\logger\logger\obj\Debug\logger.dll
 D:\logger\logger\obj\Debug\logger.pdb
+D:\Epam Labs\Logger\logger\logger\bin\Debug\logger.dll
+D:\Epam Labs\Logger\logger\logger\bin\Debug\logger.pdb
+D:\Epam Labs\Logger\logger\logger\bin\Debug\Json.dll
+D:\Epam Labs\Logger\logger\logger\bin\Debug\Newtonsoft.Json.dll
+D:\Epam Labs\Logger\logger\logger\bin\Debug\Json.pdb
+D:\Epam Labs\Logger\logger\logger\bin\Debug\Newtonsoft.Json.xml
+D:\Epam Labs\Logger\logger\logger\obj\Debug\logger.csprojResolveAssemblyReference.cache
+D:\Epam Labs\Logger\logger\logger\obj\Debug\logger.dll
+D:\Epam Labs\Logger\logger\logger\obj\Debug\logger.pdb

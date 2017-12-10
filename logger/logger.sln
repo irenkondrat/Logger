@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26430.14
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "logger", "logger\logger.csproj", "{7D10D7D7-6CEF-4F27-A710-98B12F100BEA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KLogger", "logger\KLogger.csproj", "{7D10D7D7-6CEF-4F27-A710-98B12F100BEA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

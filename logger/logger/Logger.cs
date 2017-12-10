@@ -1,51 +1,35 @@
 ﻿using System;
 using System.Configuration;
+using logger.Class;
+using logger.Interface;
 
-namespace logger
+namespace KLogger
 {
-    [FlagsAttribute]
-    public enum LoggerLevel { Debug=0, Info=1, Warn=2, Error=4, Fatal=8 };
-
+   
     public class Logger : ILogger
     {
         protected FileBase File ;
 
-        public Logger()
+        protected string NameClass;
+        
+        public Logger(string nameClass)
         {
-            string nameFile = GetSetting("FileName") ?? "LogFile";
-
-            switch (GetSetting("Type"))
-            {
-                case "xml":
-                    File = new XMLFile($"{nameFile}.xml");
-                    break;
-                case "plain":
-                    File = new PlainText($"{nameFile}.txt");
-                    break;
-                case "json":
-                    File = new JSONFile($"{nameFile}.json");
-                    break;
-                default:
-                    File = new PlainText($"{nameFile}.txt");
-                    return;
-            }
+            NameClass = nameClass;
+            string fileFormat = GetSetting("Type") ?? ".txt";
+            string fileName = GetSetting("FileName") ?? "LogFile";
+            File = new LoggerFileFactory().GetLoggerFileFactory(fileFormat, fileName);
         }
 
         public void Log(string logString)
         {
-            var logLevel = "Info";
+            string logLevel = "Info";
 
-        /*    string minlevel = GetSetting("Minlevel");
-            if (Enum.IsDefined(typeof(LoggerLevel), minlevel))
-                logLevel = minlevel;*/
-
-            File.WrtFile(logString, logLevel, "", DateTime.Now);
+            File.WrtFile(logString, logLevel, NameClass, DateTime.Now);
         }
 
         public void Log(string logString, LoggerLevel logLevel)
         {
-            Log(logString, logLevel, "");
-            
+            Log(logString, logLevel, NameClass);           
         }
 
         public void Log(string logString, LoggerLevel logLevel, string module)
@@ -59,12 +43,12 @@ namespace logger
             try
             {
                 var appSettings = ConfigurationManager.AppSettings;
-                string result = appSettings[key] ?? null;
+                string result = appSettings[key];
                 return result;
             }
             catch (ConfigurationErrorsException)
             {
-                //Console.WriteLine("Error reading app settings");
+                Console.WriteLine("Error reading app settings");
                 return null;
             }
         }
